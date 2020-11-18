@@ -5,9 +5,9 @@ import urllib.request
 root_url = 'https://raw.githubusercontent.com/ageron/handson-ml2/master/'
 # This will create a path datasets/housing which in turn will create
 # recursive folders
-os.chdir('c:\\Users\\panka')
-print(os.getcwd())
-housing_path = os.path.join('Documents', 'datasets', 'housing')
+# os.chdir('c:\\Users\\panka')
+# print(os.getcwd())
+housing_path = os.path.join('datasets', 'housing')
 housing_url = root_url + 'datasets/housing/housing.tgz'
 
 def fetch_housing_data(housing_url=housing_url, housing_path=housing_path):
@@ -21,4 +21,4 @@ def fetch_housing_data(housing_url=housing_url, housing_path=housing_path):
     housing_tgz.extractall(path=housing_path)
     housing_tgz.close()
 
-fetch_housing_data(housing_url=housing_url, housing_path=housing_path)
+# fetch_housing_data(housing_url=housing_url, housing_path=housing_path)
