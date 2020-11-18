@@ -1,6 +1,7 @@
 import os
 import tarfile
 import urllib.request
+import pandas as pd
 
 root_url = 'https://raw.githubusercontent.com/ageron/handson-ml2/master/'
 # This will create a path datasets/housing which in turn will create
@@ -22,3 +23,13 @@ def fetch_housing_data(housing_url=housing_url, housing_path=housing_path):
     housing_tgz.close()
 
 # fetch_housing_data(housing_url=housing_url, housing_path=housing_path)
+
+def load_housing_data(housing_path=housing_path):
+    print(housing_path)
+    csv_path = os.path.join(housing_path, 'housing.csv')
+    print(csv_path)
+    return pd.read_csv(csv_path)
+
+file_path = os.path.join(os.getcwd(), 'github_repo', housing_path)
+housing = load_housing_data(file_path)
+housing.head()
