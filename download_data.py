@@ -3,31 +3,25 @@ import tarfile
 import urllib.request
 import pandas as pd
 
-root_url = 'https://raw.githubusercontent.com/ageron/handson-ml2/master/'
-# This will create a path datasets/housing which in turn will create
-# recursive folders
+url_link = 'https://raw.githubusercontent.com/ageron/handson-ml2/master/datasets/housing/housing.tgz'
+# It will create a recurcice folder datasets/housing
 # os.chdir('c:\\Users\\panka')
-# print(os.getcwd())
 housing_path = os.path.join('datasets', 'housing')
-housing_url = root_url + 'datasets/housing/housing.tgz'
 
-def fetch_housing_data(housing_url=housing_url, housing_path=housing_path):
+def fetch_housing_data(url_link, housing_path):
     os.makedirs(housing_path, exist_ok=True)
-    tgz_path = os.path.join(housing_path, 'housing.tgz')
+    target_path = os.path.join(housing_path, 'housing.tgz')
     # This will auto download the file attached to url and put it in
-    # tgz_path, downloaded file's name will be dictated by tgz_path
-    urllib.request.urlretrieve(housing_url, tgz_path)
-    housing_tgz = tarfile.open(tgz_path)
-    print(housing_tgz)
+    # target_path, downloaded file's name will be dictated by target_path
+    urllib.request.urlretrieve(url_link, target_path)
+    housing_tgz = tarfile.open(target_path)
     housing_tgz.extractall(path=housing_path)
     housing_tgz.close()
 
-# fetch_housing_data(housing_url=housing_url, housing_path=housing_path)
+fetch_housing_data(url_link, housing_path)
 
-def load_housing_data(housing_path=housing_path):
-    print(housing_path)
+def load_housing_data(housing_path):
     csv_path = os.path.join(housing_path, 'housing.csv')
-    print(csv_path)
     return pd.read_csv(csv_path)
 
 file_path = os.path.join(os.getcwd(), 'github_repo', housing_path)
